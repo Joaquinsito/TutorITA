@@ -2,7 +2,7 @@
     function OpenCon(){
         $servidor = "127.0.0.1:8889";
         $usuario = "root";
-        $bd = "multiplataforma";
+        $bd = "tutorITA";
         $password = "root";
 
         $conexion = mysqli_connect($servidor, 

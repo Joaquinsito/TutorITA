@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import AlumnoMain from "./components/alumno/AlumnoMain";
 
 export default function App() {
 
@@ -14,6 +15,7 @@ export default function App() {
         <StackNav.Navigator>
               <StackNav.Screen name="Login" component={Login}/>
               <StackNav.Screen name="Register" component={Register}/>
+              <StackNav.Screen name="AlumnoMain" component={AlumnoMain}/>
           </StackNav.Navigator> 
         </NavigationContainer>
     </NativeBaseProvider>

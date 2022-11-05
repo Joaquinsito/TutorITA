@@ -14,11 +14,11 @@ const LoginForm = ({ navigation }) => {
   
 
     const validate = () => {
-        if (!formData.controlNumber) {
+        if (!formData.noControl) {
             setErrors({...errors, 
               name: 'Control number is required'});
             return false;
-          }else if (formData.controlNumber.length < 9){
+          }else if (formData.noControl.length < 8){
             setErrors({...errors,
             name: 'Control number is to short please verify'})
             return false;
@@ -44,12 +44,12 @@ const LoginForm = ({ navigation }) => {
         setFormData({...formData,
             action: 'login'})
         const formDataforRequest = new FormData()
-        formDataforRequest.append("nickname", formData.name)
+        formDataforRequest.append("noControl", formData.noControl)
         formDataforRequest.append("password", formData.pass)
         formDataforRequest.append("action", formData.action)
 
         const response = await axios.post(
-            'http://172.20.10.10:8888/tutorITA/api/login.php', 
+            'http://192.168.100.106:8888/tutorITA/api/login.php', 
             formDataforRequest,
             {Headers: {'Content-Type': 'multipart/form-data',
               "Access-Control-Allow-Origin": "*"},
@@ -59,8 +59,12 @@ const LoginForm = ({ navigation }) => {
             console.log('Object', response.data)
   
             if(Object.keys(response.data).length >= 1){
-              console.log('email', response.data[0].email)
-              navigation.navigate('Cafe', {email: response.data[0].email})
+                if(response.data[0].typeUser == 1)
+                    navigation.navigate('AlumnoMain', {noControl: response.data[0].idUser})
+                else if (response.data[0].typeUser == 2)
+                    console.log("Profesor")
+                else if (response.data[0].typeUser == 3)
+                    console.log("Administrador")
             }else{
               console.log('retry')
             }
@@ -81,12 +85,12 @@ const LoginForm = ({ navigation }) => {
             </Box>
             <Box safeArea p="2" py="8" w="90%" maxW="290">
                 <VStack space={3} mt="5">
-                    <FormControl isRequired isInvalid={'controlNumber' in errors}>
+                    <FormControl isRequired isInvalid={'noControl' in errors}>
                         <FormControl.Label>Control number</FormControl.Label>
                         <Input p={2} placeholder="Ej: 19150000" onChangeText={value => setFormData({...formData, 
-                                controlNumber: value})}/>
-                        {'controlNumber' in errors ?
-                            <FormControl.ErrorMessage>{errors.controlNumber}</FormControl.ErrorMessage>:
+                                noControl: value})}/>
+                        {'noControl' in errors ?
+                            <FormControl.ErrorMessage>{errors.noControl}</FormControl.ErrorMessage>:
                                 <FormControl.HelperText>
                                 We'll keep this between us.
                                 </FormControl.HelperText>              
