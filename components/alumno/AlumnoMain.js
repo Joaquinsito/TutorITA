@@ -7,6 +7,7 @@ const AlumnoMain = ({route}) => {
     const [formData, setFormData] = React.useState({});
     const [user, setUser] = React.useState({});
     const {noControl} = route.params;
+
     
 
     useEffect(() => {
@@ -24,12 +25,12 @@ const AlumnoMain = ({route}) => {
             transformRequest: formData => formDataforRequest,}
           ).then((response) => {
             console.log(response.data);
-            // setUser({...user, 
-            //     noControl: response.data[0].noControl,
-            //     nombreAlumno: response.data[0].nombreAlumno,
-            //     apellidoAlumno: response.data[0].apellidoAlumno,
-            //     idCarreraAlumno: response.data[0].idCarrera,
-            //     emailAlumno: response.data[0].emailAlumno})
+            setUser({...user, 
+                noControl: response.data[0].noControl,
+                nombreAlumno: response.data[0].nombreAlumno,
+                apellidoAlumno: response.data[0].apellidoAlumno,
+                idCarreraAlumno: response.data[0].idCarrera,
+                emailAlumno: response.data[0].emailAlumno})
           });
     },[])
 

@@ -99,7 +99,7 @@ const Register = ({navigation}) => {
             console.log('Object', response.data)
     
             if(Object.keys(response.data).length >= 1){
-                navigation.navigate('AlumnoMain')
+                navigation.navigate('AlumnoMain', {noControl: response.data.idUser})
             }else{
                 alert("Hay un problema con tus datos verificalo")
             }

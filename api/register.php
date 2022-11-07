@@ -27,7 +27,7 @@
 
             if($result2 == 1){
                 CloseCon($conexion);
-                echo json_encode(array('result'=>'ok', 'nControl'=> $nControl));
+                echo json_encode(array('result'=>'ok', 'idUser'=> $nControl));
             }
         }
     }
