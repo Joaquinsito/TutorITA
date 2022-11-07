@@ -16,23 +16,27 @@ const AlumnoMain = ({route}) => {
         const formDataforRequest = new FormData()
         formDataforRequest.append("noControl", '19150307')
         formDataforRequest.append("action", formData.action)
+        const getData = async () => {
+            const response =  await axios.post(
+                'http://192.168.100.106:8888/tutorITA/api/api_alumno/select.php', 
+                formDataforRequest,
+                {Headers: {'Content-Type': 'multipart/form-data',
+                "Access-Control-Allow-Origin": "*"},
+                transformRequest: formData => formDataforRequest,}
+            ).then((response) => {
+                console.log(response.data);
+                setUser({...user, 
+                    noControl: response.data[0].noControl,
+                    nombreAlumno: response.data[0].nombreAlumno,
+                    apellidoAlumno: response.data[0].apellidoAlumno,
+                    idCarreraAlumno: response.data[0].idCarrera,
+                    emailAlumno: response.data[0].emailAlumno})
+            });
+        }
 
-        const response =  axios.post(
-            'http://192.168.100.106:8888/tutorITA/api/api_alumno/select.php', 
-            formDataforRequest,
-            {Headers: {'Content-Type': 'multipart/form-data',
-              "Access-Control-Allow-Origin": "*"},
-            transformRequest: formData => formDataforRequest,}
-          ).then((response) => {
-            console.log(response.data);
-            setUser({...user, 
-                noControl: response.data[0].noControl,
-                nombreAlumno: response.data[0].nombreAlumno,
-                apellidoAlumno: response.data[0].apellidoAlumno,
-                idCarreraAlumno: response.data[0].idCarrera,
-                emailAlumno: response.data[0].emailAlumno})
-          });
+        getData()
     },[])
+
 
     return(
         <Container>
