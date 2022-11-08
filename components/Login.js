@@ -86,7 +86,7 @@ const LoginForm = ({ navigation }) => {
 
     return (
         <Center w="100%">
-            <Image mt="9" shadow={2} source={imageURI} alt="Logo Tecnm" style={{ width: 150, height: 150 }} size="xl" borderRadius={20} />
+            <Image mt="9" shadow={2} source={imageURI} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={20} />
             <Box>
                 <Text color="#1b396a" fontWeight="semibold" fontSize="2xl" style={{ textAlignVertical: "center", textAlign: "center", }}>TecNM{"\n"}Campus Aguascalientes</Text>
             </Box>
