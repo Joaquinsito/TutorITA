@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import { Container, Center, Heading, Text, VStack, Box, FormControl, Input, Link, Button, HStack, Image } from "native-base";
+import { Container, Center, Heading, Text, Image } from "native-base";
 import axios from "axios";
 
 
@@ -14,17 +14,20 @@ const AlumnoMain = ({route}) => {
 
     useEffect(() => {
         setTimeout(() => {
-            setFormData({...formData,
-                action: 'select'})
+            setFormData({ ...formData, action: 'select' })
             const formDataforRequest = new FormData()
-            formDataforRequest.append("noControl", '19150307')
+            formDataforRequest.append("noControl", noControl)
             formDataforRequest.append("action", formData.action)
             const response =  axios.post(
-                    'http://192.168.100.61:80/tutorITA/api/api_alumno/select.php', 
+                    'http://192.168.50.12:80/Multiplataforma/TutorITA/api/api_alumno/select.php', 
                     formDataforRequest,
-                    {Headers: {'Content-Type': 'multipart/form-data',
-                    "Access-Control-Allow-Origin": "*"},
-                    transformRequest: formData => formDataforRequest,}
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            "Access-control-Allow-origin": "*"
+                        },
+                        transformRequest: formData => formDataforRequest,
+                    }
                 ).then((response) => {
                     console.log(response.data);
                     setLoading(false);
@@ -34,7 +37,8 @@ const AlumnoMain = ({route}) => {
                         apellidoAlumno: response.data[0].apellidoAlumno,
                         idCarreraAlumno: response.data[0].idCarrera,
                         emailAlumno: response.data[0].emailAlumno});         
-            });
+            })
+            console.log('Object', response.data)
         }, 3000);
     },[isLoading]);
 

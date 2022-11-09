@@ -1,20 +1,17 @@
 <?php
+
     function OpenCon(){
-        $servidor = "127.0.0.1:8889";
-        $usuario = "root";
-        $bd = "tutorITA";
-        $password = "root";
+        $dbhost = "localhost";
+        $dbuser = "root";
+        $dbpass = "";
+        $db = "tutorita";
+        $conn = new mysqli($dbhost, $dbuser, $dbpass, $db)
+        or die("Connect failed: %s\n". $conn->error);
+        return $conn;
+    }
 
-        $conexion = mysqli_connect($servidor, 
-                                    $usuario,
-                                    $password,
-                                    $bd)
-        or die("Connect failed %s\n". $conexion->error);
-
-        return $conexion;
-        }
     OpenCon();
-    function CloseCon($conexion){
-        $conexion->close();
+    function CloseCon($conn){
+        $conn->close();
     }
 ?>

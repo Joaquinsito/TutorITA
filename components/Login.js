@@ -1,74 +1,81 @@
-import React from "react";
-import { Center, Heading, Text, VStack, Box, FormControl, Input, Link, Button, HStack, Image, ScrollView } from "native-base";
+import React, { useState } from "react";
+import { Box, Text, Button, ScrollView, Stack, FormControl, Input, Image, Center, VStack, HStack, Link } from 'native-base';
 import axios from "axios";
 
-
-const LoginForm = ({ navigation }) => {
+const LoginForm = ({navigation}) => {
     const imageURI = require('../assets/icon.png');
     const [formData, setFormData] = React.useState({});
     const [errors, setErrors] = React.useState({});
     let pattern = new RegExp(
-        "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
+        "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$^&*.,?]).+$"
     )
 
 
-
-
     const validate = () => {
-        if (!formData.noControl) {
+        if (formData.noControl == undefined) {
             setErrors({
                 ...errors,
-                name: 'Control number is required'
+                noControl: 'Control number is required'
             });
             return false;
         } else if (formData.noControl.length < 8) {
             setErrors({
                 ...errors,
-                name: 'Control number is to short please verify'
-            })
+                noControl: 'Control number is to short please verify'
+            });
             return false;
         }
         if (!formData.pass || formData.pass.length < 8) {
+            console.log('pass 1 if', formData.pass)
             setErrors({
                 ...errors,
-                pass: 'Password is empty'
-            })
-            return false;
+                pass: 'Password is requiered'
+            });
+            return false
         }
         else if (!pattern.test(formData.pass)) {
             console.log('pass', formData.pass)
             setErrors({
                 ...errors,
-                pass: "Is"
+                pass: 'is not valid'
             });
-            return false;
+            return false
+
         }
         setErrors({})
         return true;
     };
 
+
     const onSubmit = async () => {
-        setFormData({
-            ...formData,
-            action: 'login'
-        })
+        validate() ? console.log('submitted', formData) :
+            console.log('Validation Failed', errors)
+        //console.log('FormData', formData)
+        //console.log('Type', typeof (formData))
+        //console.log('Pass')
+        //setFormData({ ...formData, action: 'login' })
+        setFormData({ ...formData, action: 'login' })
+        //console.log('FormData', FormData)
         const formDataforRequest = new FormData()
-        formDataforRequest.append("noControl", formData.noControl)
-        formDataforRequest.append("password", formData.pass)
-        formDataforRequest.append("action", formData.action)
+        //console.log('Type', typeof (formDataforRequest))
+        formDataforRequest.append('noControl', formData.noControl)
+        formDataforRequest.append('password', formData.pass)
+        formDataforRequest.append('action', formData.action)
 
         const response = await axios.post(
-            'http://192.168.100.106:8888/tutorITA/api/login.php',
+            'http://192.168.50.12:80/Multiplataforma/TutorITA/api/login.php',
             formDataforRequest,
             {
-                Headers: {
+                headers: {
                     'Content-Type': 'multipart/form-data',
-                    "Access-Control-Allow-Origin": "*"
+                    "Access-control-Allow-origin": "*"
                 },
                 transformRequest: formData => formDataforRequest,
             }
         )
-        console.log('Object.keys', Object.keys(response.data).length)
+
+        console.log('typeof',typeof(response.data))
+        console.log('Object.keys',Object.keys(response.data).length)
         console.log('Object', response.data)
 
         if (Object.keys(response.data).length >= 1) {
@@ -81,11 +88,12 @@ const LoginForm = ({ navigation }) => {
         } else {
             console.log('retry')
         }
+    }
 
-    };
 
     return (
-        <Center w="100%">
+        <ScrollView w="100%">
+            <Center w="100%">
             <Image mt="9" shadow={2} source={imageURI} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={20} />
             <Box>
                 <Text color="#1b396a" fontWeight="semibold" fontSize="2xl" style={{ textAlignVertical: "center", textAlign: "center", }}>TecNM{"\n"}Campus Aguascalientes</Text>
@@ -145,6 +153,7 @@ const LoginForm = ({ navigation }) => {
                 </VStack>
             </Box>
         </Center>
+        </ScrollView>
     )
 }
 

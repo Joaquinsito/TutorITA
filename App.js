@@ -2,22 +2,33 @@ import { NativeBaseProvider } from "native-base";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import AlumnoMain from "./components/alumno/AlumnoMain";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-export default function App() {
+import Profile from "./components/alumno/Profile";
+import Main from "./components/alumno/Main";
+import Asesorias from "./components/alumno/Asesorias";
 
-  const StackNav = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+//const StackNav = createNativeStackNavigator();
+
+function Tabs() {
+  return (
+    <Tab.Navigator initialRouteName="Profile">
+      <Tab.Screen name="profile" component={Profile} />
+      <Tab.Screen name="main" component={Main} />
+      <Tab.Screen name="asesorias" component={Asesorias} />
+    </Tab.Navigator>
+  )
+}
+
+const App = () => {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <StackNav.Navigator>
-              <StackNav.Screen name="Login" component={Login}/>
-              <StackNav.Screen name="Register" component={Register}/>
-              <StackNav.Screen name="AlumnoMain" component={AlumnoMain}/>
-          </StackNav.Navigator> 
-        </NavigationContainer>
+        <Tabs />
+      </NavigationContainer>
     </NativeBaseProvider>
   )
 }
+
+export default App;
