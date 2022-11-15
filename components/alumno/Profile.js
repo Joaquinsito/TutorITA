@@ -57,7 +57,6 @@ const Profile = ({ route }) => {
         <ScrollView>
             <View>
                 <Center w="100%">
-                    <Box>{"\n"}</Box>
                     <Box safeAreaTop>
                         <Center>
                             <VStack space={2} alignItems="center">

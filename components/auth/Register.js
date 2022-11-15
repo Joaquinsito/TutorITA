@@ -1,17 +1,20 @@
 import React from "react";
 import { Container, Center, Heading, Text, VStack, Box, FormControl, Input, Link, Button, HStack, Image, ScrollView } from "native-base";
 import axios from "axios";
-import SelectList from 'react-native-dropdown-select-list'
-
+import SelectList from 'react-native-dropdown-select-list';
+import {useNavigation} from '@react-navigation/native';
 
 const Register = ({ navigation }) => {
-    const imageURI = require('../assets/icon.png');
+    const imageURI = require('../../assets/icon.png');
     const [selected, setSelected] = React.useState("");
     const [formData, setFormData] = React.useState({});
     const [errors, setErrors] = React.useState({});
     let pattern = new RegExp(
         "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
     )
+
+    //constante de navegacion sin validacion
+    const navigate = useNavigation();
 
 
     const validate = () => {
@@ -72,8 +75,6 @@ const Register = ({ navigation }) => {
     };
 
 
-
-
     const data = [{ key: '1', value: 'TICS' },
     { key: '2', value: 'IGE' }];
 
@@ -122,7 +123,7 @@ const Register = ({ navigation }) => {
     return (
         <ScrollView>
             <Center w="100%">
-                <Image mt="9" shadow={2} source={imageURI} alt="Logo Tecnm" style={{ width: 150, height: 150 }} size="xl" borderRadius={20} />
+                <Image mt="9" shadow={2} source={imageURI} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={20} />
                 <Box>
                     <Text color="#1b396a" fontWeight="semibold" fontSize="2xl" style={{ textAlignVertical: "center", textAlign: "center", }}>TecNM{"\n"}Campus Aguascalientes</Text>
                 </Box>
@@ -134,7 +135,7 @@ const Register = ({ navigation }) => {
                             <Input p={2} placeholder="example@mail.com" onChangeText={value => setFormData({
                                 ...formData,
                                 email: value
-                            })} />
+                            })} borderRadius={30} />
                             {'email' in errors ?
                                 <FormControl.ErrorMessage>{errors.email}</FormControl.ErrorMessage> :
                                 <FormControl.HelperText>
@@ -147,7 +148,7 @@ const Register = ({ navigation }) => {
                             <Input type="password" p={2} placeholder="Mora than 8 caracters" onChangeText={value => setFormData({
                                 ...formData,
                                 pass: value
-                            })} />
+                            })} borderRadius={30} />
                             {'pass' in errors ?
                                 <FormControl.ErrorMessage>{errors.pass}</FormControl.ErrorMessage> :
                                 <FormControl.HelperText>
@@ -160,7 +161,7 @@ const Register = ({ navigation }) => {
                             <Input placeholder="Nombre" onChangeText={value => setFormData({
                                 ...formData,
                                 name: value
-                            })} />
+                            })} borderRadius={30} />
                             {'name' in errors ?
                                 <FormControl.ErrorMessage>{errors.name}</FormControl.ErrorMessage> :
                                 <FormControl.HelperText>
@@ -173,7 +174,7 @@ const Register = ({ navigation }) => {
                             <Input placeholder="Apellido" onChangeText={value => setFormData({
                                 ...formData,
                                 lastname: value
-                            })} />
+                            })} borderRadius={30} />
                             {'lastname' in errors ?
                                 <FormControl.ErrorMessage>{errors.lastname}</FormControl.ErrorMessage> :
                                 <FormControl.HelperText>
@@ -186,7 +187,7 @@ const Register = ({ navigation }) => {
                             <Input placeholder="00000000" onChangeText={value => setFormData({
                                 ...formData,
                                 controlNumber: value
-                            })} />
+                            })} borderRadius={30} />
                             {'controlNumber' in errors ?
                                 <FormControl.ErrorMessage>{errors.controlNumber}</FormControl.ErrorMessage> :
                                 <FormControl.HelperText>
@@ -203,7 +204,9 @@ const Register = ({ navigation }) => {
                             size="lg"
                             backgroundColor="#1b396a"
                             borderRadius={30}
-                            onPress={onSubmit}>
+                            //onPress={onSubmit} 
+                            onPress={() => navigate.navigate("Home")} //comentar despues
+                            >  
                             Sign in
                         </Button>
                     </VStack>

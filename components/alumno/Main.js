@@ -14,7 +14,6 @@ const Main = ({ route }) => {
     return (
         <ScrollView w="100%">
             <View alignItems="center">
-                <Heading mt="6">Carreers</Heading>
                 <Box safeAreaTop alignItems="center">
                     <Image mt="2" shadow={2} source={Img1} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={60} />
                     <Text fontWeight="bold">Ingeniería en Tecnolgías de la Información y Comunicaciones</Text>
@@ -37,7 +36,6 @@ const Main = ({ route }) => {
                 </Box>
             </View>
         </ScrollView>
-
     )
 }
 
