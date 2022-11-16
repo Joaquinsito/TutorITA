@@ -16,12 +16,12 @@ function AuthNavigator() {
       <Stack.Screen
         name={"Login"}
         component={LoginForm}
-        options={{headerShown: true, headerTitleAlign:"center",headerTintColor:"white", headerStyle: {backgroundColor:"#1b396a"}}}
+        options={{headerShown: false, headerTitleAlign:"center",headerTintColor:"white", headerStyle: {backgroundColor:"#1b396a"}}}
       />
       <Stack.Screen 
       name={"Register"} 
       component={Register} 
-      options={() => ({headerShown: true,headerTintColor:"white",headerTitleAlign:"center", headerStyle: {backgroundColor: "#1b396a",headerBackTitleVisible: false}})}/>
+      options={() => ({headerShown: false,headerTintColor:"white",headerTitleAlign:"center", headerStyle: {backgroundColor: "#1b396a",headerBackTitleVisible: false}})}/>
       <Stack.Screen 
       name={"Home"} 
       component={BottomTabNavigator}
