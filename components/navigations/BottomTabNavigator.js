@@ -24,9 +24,8 @@ function BottomTabNavigator() {
     <Tab.Navigator
       tabBar={props => <CustomTabBar {...props} />}
       screenOptions={({route}) => ({
-        headerShown: true,
-        headerTintColor:"white",headerTitleAlign:"center", headerStyle: {backgroundColor: "#1b396a",headerBackTitleVisible: false},
-
+        headerShown: false,
+        
         tabBarShowLabel: true,
         tabBarInactiveTintColor: "#1b396a",
         tabBarActiveTintColor: "white",

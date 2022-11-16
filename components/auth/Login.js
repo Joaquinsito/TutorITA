@@ -138,8 +138,8 @@ const LoginForm = ({ navigation }) => {
                             size="lg"
                             backgroundColor="#1b396a"
                             borderRadius={30}
-                            onPress={onSubmit}
-                            //onPress={() => navigate.navigate("Home")} //comentar despues
+                            //onPress={onSubmit}
+                            onPress={() => navigate.navigate("Home")} //comentar despues
                             >
                             Sign in
                         </Button>

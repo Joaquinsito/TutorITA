@@ -6,11 +6,9 @@ const Stack = createStackNavigator();
 import LoginForm from '../auth/Login';
 import Register from '../auth/Register';
 import BottomTabNavigator from './BottomTabNavigator';
-//import DrawerNavigator from './DrawerNavigator';
-// Navigator, Screen, Group
+import DrawerNavigator from './DrawerNavigator';
 
 function AuthNavigator() {
-  //console.log(Stack);
   return (
     <Stack.Navigator screenOptions={{}} initialRouteName={"Login"}>
       <Stack.Screen
@@ -24,7 +22,7 @@ function AuthNavigator() {
       options={() => ({headerShown: false,headerTintColor:"white",headerTitleAlign:"center", headerStyle: {backgroundColor: "#1b396a",headerBackTitleVisible: false}})}/>
       <Stack.Screen 
       name={"Home"} 
-      component={BottomTabNavigator}
+      component={DrawerNavigator}
       options={{headerShown: false}} //quitar titulo de componente
       /> 
     </Stack.Navigator>
