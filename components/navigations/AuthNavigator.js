@@ -5,8 +5,13 @@ import {createStackNavigator} from '@react-navigation/stack';
 const Stack = createStackNavigator();
 import LoginForm from '../auth/Login';
 import Register from '../auth/Register';
-import BottomTabNavigator from './BottomTabNavigator';
+
 import DrawerNavigator from './DrawerNavigator';
+import DrawerProfessor from './DrawerProfessor';
+
+import BottomTabNavigator from './BottomTabNavigator';
+import TabProfessor from './TabProfessor';
+import TabAdmin from './TabAdmin';
 
 function AuthNavigator() {
   return (
@@ -25,7 +30,18 @@ function AuthNavigator() {
       component={DrawerNavigator}
       options={{headerShown: false}} //quitar titulo de componente
       /> 
+      <Stack.Screen 
+      name={"HomeProfessor"} 
+      component={DrawerProfessor}
+      options={{headerShown: false}} //quitar titulo de componente
+      /> 
+      <Stack.Screen 
+      name={"HomeAdmin"} 
+      component={TabAdmin}
+      options={{headerShown: false}} //quitar titulo de componente
+      /> 
     </Stack.Navigator>
+    
   );
 }
 

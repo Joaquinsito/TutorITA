@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Text, Button, ScrollView, Stack, FormControl, Input, Image, Center, VStack, HStack, Link } from 'native-base';
 import axios from "axios";
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -87,9 +87,11 @@ const LoginForm = ({ navigation }) => {
             if (response.data[0].typeUser == 1)
                 navigation.navigate('Home', { noControl: response.data[0].idUser })
             else if (response.data[0].typeUser == 2)
-                console.log("Profesor")
+                navigation.navigate('HomeProfessor', { noControl: response.data[0].idUser })
+            //console.log("Profesor")
             else if (response.data[0].typeUser == 3)
-                console.log("Administrador")
+                navigation.navigate('HomeAdmin', { noControl: response.data[0].idUser })
+            //console.log("Administrador")
         } else {
             console.log('retry')
         }
@@ -138,9 +140,9 @@ const LoginForm = ({ navigation }) => {
                             size="lg"
                             backgroundColor="#1b396a"
                             borderRadius={30}
-                            //onPress={onSubmit}
-                            onPress={() => navigate.navigate("Home")} //comentar despues
-                            >
+                            onPress={onSubmit}
+                        //onPress={() => navigate.navigate("Home")} //comentar despues
+                        >
                             Sign in
                         </Button>
                     </VStack>
