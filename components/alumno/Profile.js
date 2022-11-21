@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView, HStack, Avatar, Heading, Box, Image, Center, VStack, Button } from 'native-base';
 import axios from "axios";
 
-const Profile = ({ data }) => {
+export default function Profile ({ data }) {
     //const imageURI = require('../../assets/TecNM.png');
     const imageURI = require('../../assets/logoanimado2.gif');
     const [isLoading, setLoading] = useState(true);
     const [formData, setFormData] = React.useState({});
     const [user, setUser] = React.useState({});
+    console.log("data", data[0].idUser);
 
     useEffect(() => {
         setTimeout(() => {
@@ -16,7 +17,7 @@ const Profile = ({ data }) => {
             formDataforRequest.append("noControl", data[0].idUser)
             formDataforRequest.append("action", formData.action)
             const response = axios.post(
-                'http://192.168.50.12:80/Multiplataforma/TutorITA/api/api_alumno/select.php',
+                'http://192.168.100.106:8888/tutorITA/api/api_alumno/select.php',
                 formDataforRequest,
                 {
                     headers: {
@@ -113,5 +114,3 @@ const Profile = ({ data }) => {
         </ScrollView>
     );
 }
-
-export default Profile;
