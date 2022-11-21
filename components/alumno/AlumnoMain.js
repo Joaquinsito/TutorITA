@@ -10,8 +10,6 @@ const AlumnoMain = ({route}) => {
     const [user, setUser] = React.useState({});
    
 
-    
-
     useEffect(() => {
             setFormData({...formData,
                 action: 'select'})
@@ -39,18 +37,6 @@ const AlumnoMain = ({route}) => {
             getData()
         
     },[isLoading]);
-
-    // if(isLoading){
-    //     return(
-    //         <Center>
-    //             <Image 
-    //         source={imageURI}
-    //         style={{width: 100, height: 100, justifyContent: 'center'}}
-    //         />
-    //         </Center>
-    //     )
-    // }
-
 
     return (
             <Container>

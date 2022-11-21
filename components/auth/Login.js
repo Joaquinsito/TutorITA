@@ -68,7 +68,7 @@ const LoginForm = ({ navigation }) => {
         formDataforRequest.append('action', formData.action)
 
         const response = await axios.post(
-            'http://192.168.50.12:80/Multiplataforma/TutorITA/api/login.php',
+            'http://192.168.100.106:8888/tutorITA/api/login.php', 
             formDataforRequest,
             {
                 headers: {
