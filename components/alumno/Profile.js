@@ -8,13 +8,13 @@ const Profile = ({ route }) => {
     const [isLoading, setLoading] = useState(true);
     const [formData, setFormData] = React.useState({});
     const [user, setUser] = React.useState({});
-    //const { noControl } = route.params;
+    const noControl = ({route})
 
     useEffect(() => {
         setTimeout(() => {
             setFormData({ ...formData, action: 'select' })
             const formDataforRequest = new FormData()
-            formDataforRequest.append("noControl", "18150339")
+            formDataforRequest.append("noControl", noControl)
             formDataforRequest.append("action", formData.action)
             const response = axios.post(
                 'http://192.168.50.12:80/Multiplataforma/TutorITA/api/api_alumno/select.php',

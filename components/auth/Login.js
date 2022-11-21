@@ -85,12 +85,12 @@ const LoginForm = ({ navigation }) => {
 
         if (Object.keys(response.data).length >= 1) {
             if (response.data[0].typeUser == 1)
-                navigation.navigate('Home', { noControl: response.data[0].idUser })
+                navigation.navigate('TabStudent', { noControl: response.data[0].idUser })
             else if (response.data[0].typeUser == 2)
-                navigation.navigate('HomeProfessor', { noControl: response.data[0].idUser })
+                navigation.navigate('TabProfessor', { noControl: response.data[0].idUser })
             //console.log("Profesor")
             else if (response.data[0].typeUser == 3)
-                navigation.navigate('HomeAdmin', { noControl: response.data[0].idUser })
+                navigation.navigate('TabAdmin', { noControl: response.data[0].idUser })
             //console.log("Administrador")
         } else {
             console.log('retry')
@@ -141,7 +141,7 @@ const LoginForm = ({ navigation }) => {
                             backgroundColor="#1b396a"
                             borderRadius={30}
                             onPress={onSubmit}
-                        //onPress={() => navigate.navigate("Home")} //comentar despues
+                            //onPress={() => navigate.navigate("MyTabs")} //comentar despues
                         >
                             Sign in
                         </Button>
