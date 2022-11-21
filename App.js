@@ -102,7 +102,7 @@ function TabProfessor({ navigator, route }) {
           ),
         }}
       >
-        {(props) => <HomeProfessor {...props} data={route.HomeProfessor} />}
+        {(props) => <HomeProfessor {...props} data={route.params.data} />}
       </Tab.Screen>
       <Tab.Screen
         name="Asesorias"
@@ -113,18 +113,7 @@ function TabProfessor({ navigator, route }) {
           ),
         }}
       >
-        {(props) => <MainProfessor {...props} data={route.MainProfessor} />}
-      </Tab.Screen>
-      <Tab.Screen
-        name="Main"
-        options={{
-          tabBarColor: "#041C32",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bookshelf" color={color} size={26} />
-          ),
-        }}
-      >
-        {(props) => <ProfileProfessor {...props} data={route.ProfileProfessor} />}
+        {(props) => <MainProfessor {...props} data={route.params.data} />}
       </Tab.Screen>
       <Tab.Screen
         name="Profile"
@@ -138,8 +127,7 @@ function TabProfessor({ navigator, route }) {
         {(props) => (
           <ProfileProfessor
             {...props}
-            data={route.params.noControl}
-            noControl = {route.params.noControl}
+            {...props} data={route.params.data}
           />
         )}
       </Tab.Screen>
@@ -165,7 +153,7 @@ function TabAdmin({ navigator, route }) {
           ),
         }}
       >
-        {(props) => <HomeAdmin {...props} data={route.HomeAdmin} />}
+        {(props) => <HomeAdmin {...props} data={route.params.data} />}
       </Tab.Screen>
       <Tab.Screen
         name="Asesorias"
@@ -176,7 +164,7 @@ function TabAdmin({ navigator, route }) {
           ),
         }}
       >
-        {(props) => <MainAdmin {...props} data={route.MainAdmin} />}
+        {(props) => <MainAdmin {...props} data={route.params.data} />}
       </Tab.Screen>
       <Tab.Screen
         name="Main"
@@ -187,7 +175,7 @@ function TabAdmin({ navigator, route }) {
           ),
         }}
       >
-        {(props) => <ProfileAdmin {...props} data={route.ProfileAdmin} />}
+        {(props) => <ProfileAdmin {...props} data={route.params.data} />}
       </Tab.Screen>
       <Tab.Screen
         name="Profile"
@@ -200,9 +188,7 @@ function TabAdmin({ navigator, route }) {
       >
         {(props) => (
           <ProfileAdmin
-            {...props}
-            data={route.params.noControl}
-            noControl = {route.params.noControl}
+          {...props} data={route.params.data}
           />
         )}
       </Tab.Screen>
