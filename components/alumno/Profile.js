@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, ScrollView, HStack, Avatar, Heading, Box, Image, Center, VStack, Button } from 'native-base';
+import { Text, View, ScrollView, HStack, Avatar, Heading, Box, Image, Center, VStack, Button, Modal, FormControl, Input } from 'native-base';
 import axios from "axios";
 
 export default function Profile ({ data }) {
@@ -8,13 +8,15 @@ export default function Profile ({ data }) {
     const [isLoading, setLoading] = useState(true);
     const [formData, setFormData] = React.useState({});
     const [user, setUser] = React.useState({});
-    console.log("data", data[0].idUser);
+    const [showModal, setShowModal] = useState(false);
+    const [update, setUpdate] = useState(false);
+    const noControl = data[0].idUser;
 
     useEffect(() => {
         setTimeout(() => {
             setFormData({ ...formData, action: 'select' })
             const formDataforRequest = new FormData()
-            formDataforRequest.append("noControl", data[0].idUser)
+            formDataforRequest.append("noControl", noControl)
             formDataforRequest.append("action", formData.action)
             const response = axios.post(
                 'http://192.168.100.106:8888/tutorITA/api/api_alumno/select.php',
@@ -46,10 +48,106 @@ export default function Profile ({ data }) {
         return (
             <Center>
                 <Image
+                    accessibilityLabel="School Logo"
                     source={imageURI}
                     style={{ width: 100, height: 100, justifyContent: 'center' }}
                 />
             </Center>
+        )
+    }
+
+    const updateDate = async () => {
+        const formDataforRequest = new FormData()
+        formDataforRequest.append("noControl", data[0].idUser)
+        formDataforRequest.append("action1", 'update')
+        formDataforRequest.append("name", formData.nameU)
+        formDataforRequest.append("lastname", formData.lastnameU)
+        formDataforRequest.append("email", formData.emailU)
+        console.log("data for send", formDataforRequest);
+        const response = await axios.post(
+            'http://192.168.100.106:8888/tutorITA/api/api_alumno/updateAlumno.php',
+                formDataforRequest,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        "Access-control-Allow-origin": "*"
+                    },
+                    transformRequest: formData => formDataforRequest,
+                }
+        ).then((response) => {
+            console.log("data de response" ,response.data);
+            setFormData({ ...formData, action: 'select' })
+            const formDataforRequest = new FormData()
+            formDataforRequest.append("noControl", noControl)
+            formDataforRequest.append("action", formData.action)
+            const respuesta =   axios.post(
+                    'http://192.168.100.106:8888/tutorITA/api/api_alumno/select.php',
+                    formDataforRequest,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            "Access-control-Allow-origin": "*"
+                        },
+                        transformRequest: formData => formDataforRequest,
+                    }
+                ).then((respuesta) => {
+                    console.log("respuesta",respuesta.data);
+
+                        setLoading(false);
+                        setUser({
+                            ...user,
+                            noControl: respuesta.data[0].noControl,
+                            nombreAlumno: respuesta.data[0].nombreAlumno,
+                            apellidoAlumno: respuesta.data[0].apellidoAlumno,
+                            idCarreraAlumno: respuesta.data[0].idCarrera,
+                            emailAlumno: respuesta.data[0].emailAlumno,
+                            idCarrera: respuesta.data[0].idCarrera
+                        });
+                    setShowModal(false);
+                    setLoading(true);
+                })
+
+    })
+
+    }
+
+    
+
+    if (showModal){
+        return (
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                <Modal.Content maxWidth="400px">
+                    <Modal.CloseButton />
+                    <Modal.Header>Edit Data</Modal.Header>
+                    <Modal.Body>
+                        <FormControl.Label>Name</FormControl.Label>
+                        <Input onChangeText={value => setFormData({
+                                ...formData,
+                                nameU: value
+                            })}>{user.nombreAlumno}</Input>
+                        <FormControl.Label>Lastname</FormControl.Label>
+                        <Input onChangeText={value => setFormData({
+                                ...formData,
+                                lastnameU: value
+                            })}>{user.apellidoAlumno}</Input>
+                        <FormControl.Label>Email</FormControl.Label>
+                        <Input onChangeText={value => setFormData({
+                                ...formData,
+                                emailU: value
+                            })}>{user.emailAlumno}</Input>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button.Group space={2}>
+                            <Button variant="ghost" colorScheme="blueGray" onPress={() => {
+                                setShowModal(false);
+                            }}>Cancel</Button>
+                            <Button onPress={() => {
+                                updateDate();
+                            }}>Save</Button>
+                        </Button.Group>
+                    </Modal.Footer>
+                </Modal.Content>
+            </Modal>
         )
     }
 
@@ -60,9 +158,9 @@ export default function Profile ({ data }) {
                     <Box safeAreaTop>
                         <Center>
                             <VStack space={2} alignItems="center">
-                                <Avatar bg="amber.500" source={{
+                                <Avatar bg="amber.500" accessibilityLabel="Student Image!" source={{
                                     uri: "https://pbs.twimg.com/media/EGPJ-LDXYAAik46?format=jpg&name=medium"
-                                }} size="2xl">
+                                }} size="xl">
                                     NB
                                     <Avatar.Badge bg="green.500" />
                                 </Avatar>
@@ -103,11 +201,11 @@ export default function Profile ({ data }) {
                 <View flex={1} px="20">
                     <Box Box p="3" rounded="xl">
                         <Button
-                            px="20"
-                            mt="2"
+                            
                             size="lg"
                             backgroundColor="#1b396a"
-                            borderRadius={30}>Edit</Button>
+                            borderRadius={30}
+                            onPress={() => setShowModal(true)}>Edit</Button>
                     </Box>
                 </View>
             </View>

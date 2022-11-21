@@ -87,10 +87,10 @@ const LoginForm = ({ navigation }) => {
             if (response.data[0].typeUser == 1)
                 navigation.replace('TabStudent', { data: response.data ,noControl: response.data[0].idUser })
             else if (response.data[0].typeUser == 2)
-                navigation.replace('TabProfessor', { noControl: response.data[0].idUser })
+                navigation.replace('TabProfessor', { data: response.data ,idDocente: response.data[0].idUser  })
             //console.log("Profesor")
             else if (response.data[0].typeUser == 3)
-                navigation.repalce('TabAdmin', { noControl: response.data[0].idUser })
+                navigation.repalce('TabAdmin', { data: response.data , idAdmin: response.data[0].idUser  })
             //console.log("Administrador")
         } else {
             console.log('retry')
