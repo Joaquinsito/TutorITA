@@ -85,12 +85,12 @@ const LoginForm = ({ navigation }) => {
 
         if (Object.keys(response.data).length >= 1) {
             if (response.data[0].typeUser == 1)
-                navigation.navigate('TabStudent', { noControl: response.data[0].idUser })
+                navigation.replace('TabStudent', { data: response.data ,noControl: response.data[0].idUser })
             else if (response.data[0].typeUser == 2)
-                navigation.navigate('TabProfessor', { noControl: response.data[0].idUser })
+                navigation.replace('TabProfessor', { noControl: response.data[0].idUser })
             //console.log("Profesor")
             else if (response.data[0].typeUser == 3)
-                navigation.navigate('TabAdmin', { noControl: response.data[0].idUser })
+                navigation.repalce('TabAdmin', { noControl: response.data[0].idUser })
             //console.log("Administrador")
         } else {
             console.log('retry')

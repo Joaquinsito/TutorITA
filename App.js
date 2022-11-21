@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { NativeBaseProvider } from 'native-base';
 import { View, Text } from 'react-native';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -26,7 +26,7 @@ import HomeAdmin from './components/Admin/HomeAdmin';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 //menu tab students
-function TabStudent({ navigator, route }) {
+function TabStudent({ navigation, route }) {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -42,7 +42,7 @@ function TabStudent({ navigator, route }) {
           ),
         }}
       >
-        {(props) => <Home {...props} data={route.Home} />}
+        {(props) => <Home {...props} data={route.params.data} />}
       </Tab.Screen>
       <Tab.Screen
         name="Asesorias"
@@ -53,7 +53,7 @@ function TabStudent({ navigator, route }) {
           ),
         }}
       >
-        {(props) => <Asesorias {...props} data={route.Asesorias} />}
+        {(props) => <Asesorias {...props} data={route.params.data} />}
       </Tab.Screen>
       <Tab.Screen
         name="Main"
@@ -64,7 +64,7 @@ function TabStudent({ navigator, route }) {
           ),
         }}
       >
-        {(props) => <Main {...props} data={route.Main} />}
+        {(props) => <Main {...props} data={route.params.data}/>}
       </Tab.Screen>
       <Tab.Screen
         name="Profile"
@@ -77,9 +77,7 @@ function TabStudent({ navigator, route }) {
       >
         {(props) => (
           <Profile
-            {...props}
-            data={route.params.data}
-            noControl = {route.params.noControl}
+          {...props} data={route.params.data}
           />
         )}
       </Tab.Screen>

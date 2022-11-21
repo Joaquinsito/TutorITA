@@ -7,7 +7,7 @@ import { Center, NativeBaseProvider } from 'native-base';
 
 
 
-export default function Home ({route}){
+export default function Home ({data}){
   const [formData, setFormData] = useState({});
   const [listTutorias, setlistTutorias] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ export default function Home ({route}){
   useEffect(() => {
 
     const formDataforRequest = new FormData()
-    formDataforRequest.append("noControl", '18170306')
+    formDataforRequest.append("noControl", data[0].idUser)
     formDataforRequest.append("action", formData.action)
 
     const getData = async () => {

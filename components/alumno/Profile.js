@@ -2,19 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView, HStack, Avatar, Heading, Box, Image, Center, VStack, Button } from 'native-base';
 import axios from "axios";
 
-const Profile = ({ route }) => {
+const Profile = ({ data }) => {
     //const imageURI = require('../../assets/TecNM.png');
     const imageURI = require('../../assets/logoanimado2.gif');
     const [isLoading, setLoading] = useState(true);
     const [formData, setFormData] = React.useState({});
     const [user, setUser] = React.useState({});
-    const noControl = ({route})
 
     useEffect(() => {
         setTimeout(() => {
             setFormData({ ...formData, action: 'select' })
             const formDataforRequest = new FormData()
-            formDataforRequest.append("noControl", noControl)
+            formDataforRequest.append("noControl", data[0].idUser)
             formDataforRequest.append("action", formData.action)
             const response = axios.post(
                 'http://192.168.50.12:80/Multiplataforma/TutorITA/api/api_alumno/select.php',
