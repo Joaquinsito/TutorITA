@@ -68,7 +68,7 @@ const LoginForm = ({ navigation }) => {
         formDataforRequest.append('action', formData.action)
 
         const response = await axios.post(
-            'http://192.168.100.106:8888/tutorITA/api/login.php', 
+            'http://192.168.50.12:80/Multiplataforma/TutorITA/api/login.php', 
             formDataforRequest,
             {
                 headers: {
@@ -141,7 +141,7 @@ const LoginForm = ({ navigation }) => {
                             backgroundColor="#1b396a"
                             borderRadius={30}
                             onPress={onSubmit}
-                            //onPress={() => navigate.navigate("MyTabs")} //comentar despues
+                            //onPress={() => navigate.navigate("TabStudent")} //comentar despues
                         >
                             Sign in
                         </Button>

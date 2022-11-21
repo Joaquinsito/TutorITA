@@ -36,7 +36,7 @@ function TabStudent({ navigation, route }) {
       <Tab.Screen
         name="Home"
         options={{
-          tabBarColor: "#041C32",
+          tabBarColor: "#1b396a",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
@@ -47,7 +47,7 @@ function TabStudent({ navigation, route }) {
       <Tab.Screen
         name="Asesorias"
         options={{
-          tabBarColor: "#041C32",
+          tabBarColor: "#1b396a",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="calendar" color={color} size={26} />
           ),
@@ -58,7 +58,7 @@ function TabStudent({ navigation, route }) {
       <Tab.Screen
         name="Main"
         options={{
-          tabBarColor: "#041C32",
+          tabBarColor: "#1b396a",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="bookshelf" color={color} size={26} />
           ),
@@ -69,7 +69,7 @@ function TabStudent({ navigation, route }) {
       <Tab.Screen
         name="Profile"
         options={{
-          tabBarColor: "#041C32",
+          tabBarColor: "#1b396a",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" color={color} size={26} />
           ),
@@ -96,7 +96,7 @@ function TabProfessor({ navigator, route }) {
       <Tab.Screen
         name="Home"
         options={{
-          tabBarColor: "#041C32",
+          tabBarColor: "#1b396a",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
@@ -160,6 +160,7 @@ function TabAdmin({ navigator, route }) {
         name="Home"
         options={{
           tabBarColor: "#041C32",
+          header: false, 
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
@@ -171,6 +172,7 @@ function TabAdmin({ navigator, route }) {
         name="Asesorias"
         options={{
           tabBarColor: "#041C32",
+          headerShown: false, 
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="calendar" color={color} size={26} />
           ),
@@ -221,21 +223,23 @@ const App = () => {
           >
             <Stack.Screen
               name="Login"
-              component={LoginForm}
+              //component={LoginForm}
+              component={Asesorias}
               options={{ headerShown: false }}
             />
             <Stack.Screen
               name="Register"
               component={Register}
               options={{
-                title: "LearnApp",
+                title: "Register",
+                headerShown: true
               }}
             />
             <Stack.Screen
               name="TabStudent"
               component={TabStudent}
               options={{
-                headerBackVisible: true,
+                headerBackVisible: false
               }}
             />
              <Stack.Screen
