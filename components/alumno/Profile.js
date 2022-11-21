@@ -201,7 +201,6 @@ export default function Profile ({ data }) {
                 <View flex={1} px="20">
                     <Box Box p="3" rounded="xl">
                         <Button
-                            
                             size="lg"
                             backgroundColor="#1b396a"
                             borderRadius={30}
