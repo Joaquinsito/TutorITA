@@ -1,8 +1,10 @@
+
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React, { useState, useEffect } from 'react';
 import Tutorias from '../tutorias/Tutorias.js';
 import axios from "axios";
 import { Center, NativeBaseProvider } from 'native-base';
+
 
 
 export default function Home ({route}){
@@ -51,7 +53,6 @@ const renderItem = ({ item }) => (
     <View
       style={{
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: "yellow",
       }}>
