@@ -1,9 +1,5 @@
 import React, { useEffect, useState} from "react";
-<<<<<<< HEAD
-import { Container, Center, Heading, Text, Image } from "native-base";
-=======
 import { Container, Center, Heading, Text, VStack, Box, FormControl, Input, Link, Button, HStack, Image, NativeBaseProvider } from "native-base";
->>>>>>> ea2027c920a163c2aecd6972ca0d7e5c55a7e35a
 import axios from "axios";
 
 
@@ -17,32 +13,18 @@ const AlumnoMain = ({route}) => {
     
 
     useEffect(() => {
-<<<<<<< HEAD
-        setTimeout(() => {
-            setFormData({ ...formData, action: 'select' })
-=======
             setFormData({...formData,
                 action: 'select'})
->>>>>>> ea2027c920a163c2aecd6972ca0d7e5c55a7e35a
             const formDataforRequest = new FormData()
-            formDataforRequest.append("noControl", noControl)
+            formDataforRequest.append("noControl", '19150307')
             formDataforRequest.append("action", formData.action)
-<<<<<<< HEAD
-            const response =  axios.post(
-                    'http://192.168.50.12:80/Multiplataforma/TutorITA/api/api_alumno/select.php', 
-=======
             const getData = async () => {
                 const response =  await axios.post(
                     'http://172.16.2.91:8888/tutorITA/api/api_alumno/select.php', 
->>>>>>> ea2027c920a163c2aecd6972ca0d7e5c55a7e35a
                     formDataforRequest,
-                    {
-                        headers: {
-                            'Content-Type': 'multipart/form-data',
-                            "Access-control-Allow-origin": "*"
-                        },
-                        transformRequest: formData => formDataforRequest,
-                    }
+                    {Headers: {'Content-Type': 'multipart/form-data',
+                    "Access-Control-Allow-Origin": "*"},
+                    transformRequest: formData => formDataforRequest,}
                 ).then((response) => {
                     console.log(response.data);
                     setLoading(false);
@@ -52,16 +34,10 @@ const AlumnoMain = ({route}) => {
                         apellidoAlumno: response.data[0].apellidoAlumno,
                         idCarreraAlumno: response.data[0].idCarrera,
                         emailAlumno: response.data[0].emailAlumno});         
-<<<<<<< HEAD
-            })
-            console.log('Object', response.data)
-        }, 3000);
-=======
             }); 
             }
             getData()
         
->>>>>>> ea2027c920a163c2aecd6972ca0d7e5c55a7e35a
     },[isLoading]);
 
     // if(isLoading){
