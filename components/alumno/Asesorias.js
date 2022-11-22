@@ -14,13 +14,12 @@ const Asesorias = ({ route }) => {
     const [text, setText] = useState('');
     const [mode, setMode] = useState('date');
 
-
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         setShow(false)
         setDate(currentDate);
         let tempDate = new Date(currentDate);
-        let fDate = tempDate.getFullYear() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getDate();
+        let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate();
         setText(fDate)
         //console.log(fDate)
     }
@@ -52,7 +51,7 @@ const Asesorias = ({ route }) => {
 
     const subject = [
         { key: 'BIGD9', value: 'Big Data' },
-        { key: 'CAL', value: 'Calculo Integral' }
+        { key: 'CALC9', value: 'Calculo Integral' }
     ];
 
     const professor = [
@@ -66,13 +65,13 @@ const Asesorias = ({ route }) => {
         { key: '09:00', value: '09:00' },
         { key: '10:00', value: '10:00' },
         { key: '11:00', value: '11:00' },
-        { key: '6', value: '12:00' },
-        { key: '7', value: '13:00' },
-        { key: '8', value: '14:00' },
-        { key: '9', value: '15:00' },
-        { key: '10', value: '16:00' },
-        { key: '11', value: '17:00' },
-        { key: '12', value: '18:00' },
+        { key: '12:00', value: '12:00' },
+        { key: '13:00', value: '13:00' },
+        { key: '14:00', value: '14:00' },
+        { key: '15:00', value: '15:00' },
+        { key: '16:00', value: '16:00' },
+        { key: '17:00', value: '17:00' },
+        { key: '18:00', value: '18:00' },
     ];
 
     const onSubmit = async () => {
@@ -81,17 +80,16 @@ const Asesorias = ({ route }) => {
                 ...formData,
                 action: 'register'
             })
-        console.log('FormData', formData)
+        //console.log('FormData', formData)
         const formDataforRequest = new FormData()
         formDataforRequest.append("idMateriaAsesoria", selected)
         formDataforRequest.append("statusAsesoria", 1)
         formDataforRequest.append("cupoAsesoria", 8)
-        formDataforRequest.append("idDocenteAsesoria", selected2)
-        formDataforRequest.append("fecha", text)
+        formDataforRequest.append("idDocente", selected2)
+        formDataforRequest.append("date", text)
         formDataforRequest.append("hora", selected3)
         formDataforRequest.append("action", "register")
         console.log('FormDataRequest', formDataforRequest)
-
 
         const response = await axios.post(
             'http://192.168.50.12:80/Multiplataforma/TutorITA/api/api_tutorias/addTutoria.php',  //Si no encuentra el localhost, poner direccion de la maquina
@@ -156,7 +154,7 @@ const Asesorias = ({ route }) => {
                                 borderRadius={30}
                                 onPress={onSubmit}
                             >
-                                Register
+                                Ofertar
                             </Button>
                         </VStack>
                     </Box>
