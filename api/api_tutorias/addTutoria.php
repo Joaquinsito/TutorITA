@@ -18,7 +18,7 @@
         if($_POST['action'] == 'register'){
             echo ('Paso action');
             $sql = "Insert into asesorias (idAsesoria, idMateriaAsesoria, statusAsesoria, cupoAsesoria, idDocenteAsesoria, fecha, hora)
-             values ('1','$idMateriaAsesoria', '$statusAsesoria', '$cupoAsesoria', '$idDocenteAsesoria', '$date', '$hora');";
+             values ('','$idMateriaAsesoria', '$statusAsesoria', '$cupoAsesoria', '$idDocenteAsesoria', '$date', '$hora');";
             echo ($sql);
             $result = $conexion->query($sql);
            

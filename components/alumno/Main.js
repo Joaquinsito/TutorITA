@@ -1,41 +1,101 @@
-import React, { useState } from 'react';
-import { Text, View, ScrollView, HStack, Avatar, Heading, Box, Image, Center, VStack, Button } from 'native-base';
+import React, { useState, useEffect } from 'react';
+import { Text, View, ScrollView, HStack, Avatar, Heading, Box, Image, Center, VStack, Button, Flex, Divider, SafeAreaView } from 'native-base';
+import SelectList from 'react-native-dropdown-select-list';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { TouchableOpacity,FlatList  } from 'react-native';
+import axios from 'axios';
 
-const Main = ({ route }) => {
-    const Img1 = require('../../assets/carrers/1.jpg');
-    const Img2 = require('../../assets/carrers/2.jpg');
-    const Img3 = require('../../assets/carrers/3.jpg');
-    const Img4 = require('../../assets/carrers/4.jpg');
-    const Img5 = require('../../assets/carrers/5.jpg');
-    const Img6 = require('../../assets/carrers/6.jpg');
-    const Img7 = require('../../assets/carrers/7.jpg');
-    const Img8 = require('../../assets/carrers/8.jpg');
-    const Img9 = require('../../assets/carrers/9.jpg');
+const Main = ({ data }) => {
+
+    //DatePicker
+    const imageURI = require('../../assets/img/calendar.png');
+    const [date, setDate] = useState(new Date());
+    const [show, setShow] = useState(false);
+    const [text, setText] = useState('');
+    const [mode, setMode] = useState('date');
+
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setShow(false)
+        setDate(currentDate);
+        let tempDate = new Date(currentDate);
+        let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate();
+        setText(fDate)
+        //console.log(fDate)
+    }
+
+    const showMode = (date) => {
+        setMode(date);
+        setShow(true);
+    }
+
+
+    //selectlist
+    const [selected, setSelected] = React.useState("");
+    const [selected2, setSelected2] = React.useState("");
+    const [selected3, setSelected3] = React.useState("");
+
+    const subject = [
+        { key: 'BIGD9', value: 'Big Data' },
+        { key: 'CALC9', value: 'Calculo Integral' }
+    ];
+
+    const professor = [
+        { key: '90912990', value: 'Fernando Reyes' },
+        { key: '18181818', value: 'Prueba' }
+    ];
+
+    const hour = [
+        { key: '07:00', value: '07:00' },
+        { key: '08:00', value: '08:00' },
+        { key: '09:00', value: '09:00' },
+        { key: '10:00', value: '10:00' },
+        { key: '11:00', value: '11:00' },
+        { key: '12:00', value: '12:00' },
+        { key: '13:00', value: '13:00' },
+        { key: '14:00', value: '14:00' },
+        { key: '15:00', value: '15:00' },
+        { key: '16:00', value: '16:00' },
+        { key: '17:00', value: '17:00' },
+        { key: '18:00', value: '18:00' },
+    ];
+
     return (
-        <ScrollView w="100%">
-            <View alignItems="center">
-                <Box safeAreaTop alignItems="center">
-                    <Image mt="2" shadow={2} source={Img1} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={60} />
-                    <Text fontWeight="bold">Ingeniería en Tecnolgías de la Información y Comunicaciones</Text>
-                    <Image mt="2" shadow={2} source={Img2} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={60} />
-                    <Text fontWeight="bold">Licenciatura en Admisnitración</Text>
-                    <Image mt="9" shadow={2} source={Img3} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={60} />
-                    <Text fontWeight="bold">Ingeniería Química</Text>
-                    <Image mt="9" shadow={2} source={Img4} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={60} />
-                    <Text fontWeight="bold">Ingeniería Mecánica</Text>
-                    <Image mt="9" shadow={2} source={Img5} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={60} />
-                    <Text fontWeight="bold">Ingeniería Eléctrica</Text>
-                    <Image mt="9" shadow={2} source={Img6} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={60} />
-                    <Text fontWeight="bold">Ingeniería Eléctrica</Text>
-                    <Image mt="9" shadow={2} source={Img7} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={60} />
-                    <Text fontWeight="bold">Ingeniería en Gestión Empresarial</Text>
-                    <Image mt="9" shadow={2} source={Img8} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={60} />
-                    <Text fontWeight="bold">Ingeniería Industrial</Text>
-                    <Image mt="9" shadow={2} source={Img9} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={60} />
-                    <Text fontWeight="bold">ngeniería en Materiales</Text>
-                </Box>
-            </View>
-        </ScrollView>
+        <View >
+            <Box alignItems="center">
+                <Text p="8">Asesorias Disponibles</Text>
+                <Text >Buscar</Text>
+                <Flex direction="row" p={4}>
+                    <Divider bg="amber.500" thickness="2" mx="2" orientation="vertical" />
+                    <SelectList setSelected={setSelected} data={subject} placeholder="Subject" search={false} />
+                    <Divider bg="emerald.500" thickness="2" mx="2" orientation="vertical" />
+                    <SelectList setSelected={setSelected2} data={professor} placeholder="Professor" search={false} />
+                    <Divider bg="emerald.500" thickness="2" mx="2" orientation="vertical" />
+                    <SelectList setSelected={setSelected3} data={hour} placeholder="Hous" search={false} />
+                    <Divider bg="amber.500" thickness="2" mx="2" orientation="vertical" />
+                </Flex>
+                <Center>
+                    <TouchableOpacity onPress={() => showMode('date')}>
+                        <Image shadow={2} source={imageURI}
+                            alt="Logo Tecnm" style={{ width: 70, height: 70 }} size="xl" />
+                    </TouchableOpacity>
+                </Center>
+                {show && (
+                    <DateTimePicker
+                        testID='dateTimePicker'
+                        value={date}
+                        mode={mode}
+                        display='default'
+                        onChange={onChange}
+                    />
+                )}
+                <Text >Materia Seleccionada: {selected}</Text>
+                <Text >Professor: {selected2}</Text>
+                <Text>Fecha: {text}</Text>
+                <Text >Hora: {selected3}</Text>
+                <Text p={5}>Asesoria Disponibles</Text>
+            </Box >
+        </View >
     )
 }
 
