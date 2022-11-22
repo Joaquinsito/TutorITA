@@ -18,9 +18,11 @@ import HomeProfessor from './components/Professor/HomeProfessor';
 import MainProfessor from './components/Professor/MainProfessor';
 import ProfileProfessor from './components/Professor/ProfileProfessor';
 
-import ProfileAdmin from './components/Admin/ProfileAdmin';
-import MainAdmin from './components/Admin/MainAdmin';
-import HomeAdmin from './components/Admin/HomeAdmin';
+import StudentsAdmin from './components/Admin/StudentsAdmin';
+import MateriasAdmin from './components/Admin/MateriasAdmin';
+import CarreasAdmin from './components/Admin/CarrerasAdmin';
+import DocentesAdmin from './components/Admin/DocentesAdmin';
+import LogOut from './components/Admin/LogOut';
 
 
 const Stack = createStackNavigator();
@@ -145,53 +147,61 @@ function TabAdmin({ navigator, route }) {
       inactiveColor="#449e9d"
     >
       <Tab.Screen
-        name="Home"
+        name="Students"
         options={{
           tabBarColor: "#041C32",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
+            <MaterialCommunityIcons name="pac-man" color={color} size={26} />
           ),
         }}
       >
-        {(props) => <HomeAdmin {...props} data={route.params.data} />}
+        {(props) => <StudentsAdmin {...props} data={route.params.data} />}
       </Tab.Screen>
       <Tab.Screen
-        name="Asesorias"
+        name="Teachers"
         options={{
           tabBarColor: "#041C32",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="calendar" color={color} size={26} />
+            <MaterialCommunityIcons name="account-heart" color={color} size={26} />
           ),
         }}
       >
-        {(props) => <MainAdmin {...props} data={route.params.data} />}
+        {(props) => <DocentesAdmin {...props} data={route.params.data} />}
       </Tab.Screen>
       <Tab.Screen
-        name="Main"
+        name="Materias"
         options={{
           tabBarColor: "#041C32",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bookshelf" color={color} size={26} />
+            <MaterialCommunityIcons name="clipboard" color={color} size={26} />
           ),
         }}
       >
-        {(props) => <ProfileAdmin {...props} data={route.params.data} />}
+        {(props) => <MateriasAdmin {...props} data={route.params.data} />}
+      </Tab.Screen>
+        <Tab.Screen
+        name="Carreras"
+        options={{
+          tabBarColor: "#041C32",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="numeric" color={color} size={26} />
+          ),
+        }}
+      >
+        {(props) => <CarreasAdmin {...props} data={route.params.data} />}
       </Tab.Screen>
       <Tab.Screen
-        name="Profile"
+        name="Status"
         options={{
           tabBarColor: "#041C32",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
+            <MaterialCommunityIcons name="numeric" color={color} size={26} />
           ),
         }}
       >
-        {(props) => (
-          <ProfileAdmin
-          {...props} data={route.params.data}
-          />
-        )}
+        {(props) => <LogOut/>}
       </Tab.Screen>
+      
     </Tab.Navigator>
   );
 

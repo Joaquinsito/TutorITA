@@ -90,7 +90,7 @@ const LoginForm = ({ navigation }) => {
                 navigation.replace('TabProfessor', { data: response.data ,idDocente: response.data[0].idUser  })
             //console.log("Profesor")
             else if (response.data[0].typeUser == 3)
-                navigation.repalce('TabAdmin', { data: response.data , idAdmin: response.data[0].idUser  })
+                navigation.replace('TabAdmin', { data: response.data , idAdmin: response.data[0].idUser  })
             //console.log("Administrador")
         } else {
             console.log('retry')
