@@ -17,6 +17,10 @@
         if($_POST['action'] == 'register'){
             $sql = "Insert into asesorias (idMateriaAsesoria, statusAsesoria, cupoAsesoria, idDocenteAsesoria, fecha, hora)
              values ('$idMateriaAsesoria', '$statusAsesoria', '$cupoAsesoria', '$idDocenteAsesoria', '$date', '$hora');";
+
+            $sql = "Insert into asesorias (idAsesoria, idMateriaAsesoria, statusAsesoria, cupoAsesoria, idDocenteAsesoria, fecha, hora)
+             values ('','$idMateriaAsesoria', '$statusAsesoria', '$cupoAsesoria', '$idDocenteAsesoria', '$date', '$hora');";
+
             $result = $conexion->query($sql);
            
             if($result){
