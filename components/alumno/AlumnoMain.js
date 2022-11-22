@@ -18,7 +18,7 @@ const AlumnoMain = ({route}) => {
             formDataforRequest.append("action", formData.action)
             const getData = async () => {
                 const response =  await axios.post(
-                    'http://172.16.2.91:8888/tutorITA/api/api_alumno/select.php', 
+                    'http://172.16.2.116:8888/tutorITA/api/api_alumno/select.php', 
                     formDataforRequest,
                     {Headers: {'Content-Type': 'multipart/form-data',
                     "Access-Control-Allow-Origin": "*"},

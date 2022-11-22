@@ -20,7 +20,7 @@ export default function HomeProfessor ({data}) {
         formDataforRequest.append("idDocente", data[0].idUser)
         formDataforRequest.append("action", formData.action)
       const response =  await axios.post(
-          'http://192.168.100.106:8888/tutorITA/api/api_docente/selectTutoriasDocente.php', 
+          'http://172.16.2.116:8888/tutorITA/api/api_docente/selectTutoriasDocente.php', 
           formDataforRequest,
           {Headers: {'Content-Type': 'multipart/form-data',
           "Access-Control-Allow-Origin": "*"},

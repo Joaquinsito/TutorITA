@@ -19,7 +19,7 @@ export default function Profile ({ data, navigation }) {
             formDataforRequest.append("noControl", noControl)
             formDataforRequest.append("action", formData.action)
             const response = axios.post(
-                'http://192.168.100.106:8888/tutorITA/api/api_alumno/select.php',
+                'http://172.16.2.116:8888/tutorITA/api/api_alumno/select.php',
                 formDataforRequest,
                 {
                     headers: {

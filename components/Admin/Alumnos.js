@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView, HStack, Avatar, Heading, Box, Image, Center, VStack, Button, Modal, FormControl, Input } from 'native-base';
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
-import StudentsAdmin from './StudentsAdmin';
+
 
 
 const ItemAlumno = (props, {navigation}) => {
@@ -24,7 +24,7 @@ const ItemAlumno = (props, {navigation}) => {
         formDataforRequest.append("email", formData.emailU)
         console.log("data for send", formDataforRequest);
         const response = await axios.post(
-            'http://192.168.100.106:8888/tutorITA/api/api_alumno/updateAlumno.php',
+            'http://172.16.2.116:8888/tutorITA/api/api_alumno/updateAlumno.php',
                 formDataforRequest,
                 {
                     headers: {
@@ -50,7 +50,7 @@ const ItemAlumno = (props, {navigation}) => {
         formDataforRequest.append("action1", 'delete')
 
         const response = await axios.post(
-            'http://192.168.100.106:8888/tutorITA/api/api_alumno/deleteAlumno.php',
+            'http://172.16.2.116:8888/tutorITA/api/api_alumno/deleteAlumno.php',
                 formDataforRequest,
                 {
                     headers: {

@@ -28,7 +28,7 @@ export default function StudentsAdmin ({data}){
         action: 'select'})
       
       const response =  await axios.post(
-          'http://192.168.100.106:8888/tutorITA/api/api_admin/selectAlumnos.php', 
+          'http://172.16.2.116:8888/tutorITA/api/api_admin/selectAlumnos.php', 
           formDataforRequest,
           {Headers: {'Content-Type': 'multipart/form-data',
           "Access-Control-Allow-Origin": "*"},
@@ -70,7 +70,7 @@ const addStudent = async () => {
     formDataforRequest.append("major", selected)
 
     const answer =  await axios.post(
-        'http://192.168.100.106:8888/tutorITA/api/register.php', 
+        'http://172.16.2.116:8888/tutorITA/api/register.php', 
         formDataforRequest,
         {Headers: {'Content-Type': 'multipart/form-data',
         "Access-Control-Allow-Origin": "*"},

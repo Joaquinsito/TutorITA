@@ -24,7 +24,10 @@
                     $sqlUpdate = "update asesorias set cupoAsesoria = '$cupo' where idAsesoria = '$idAsesoria';";
                     if($result2 = $conexion->query($sqlUpdate)){
                         CloseCon($conexion);
-                        echo json_encode(array('result'=>'Alumno inscrito con exito'));
+                        $set = array();
+                        $row = array('idUser'=>$idAlumno, 'typeUser'=>'1');
+                        $set[] = $row;
+                        echo json_encode($set);
                     }
                 }else{
                     echo json_encode(array('result' => 'Alumno no inscrito, no hay cupo'));

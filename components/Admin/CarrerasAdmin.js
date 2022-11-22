@@ -26,7 +26,7 @@ export default function CarrrasAdmin ({data}){
         action: 'select'})
       
       const response =  await axios.post(
-          'http://192.168.100.106:8888/tutorITA/api/api_major/selectMajor.php', 
+          'http://172.16.2.116:8888/tutorITA/api/api_major/selectMajor.php', 
           formDataforRequest,
           {Headers: {'Content-Type': 'multipart/form-data',
           "Access-Control-Allow-Origin": "*"},
@@ -60,7 +60,7 @@ const addCarrera = async () => {
     formDataforRequest.append("nameCarrera", formData.name);
     console.log("Data for request", formDataforRequest);
     const answer =  await axios.post(
-        'http://192.168.100.106:8888/tutorITA/api/api_major/addMajor.php', 
+        'http://172.16.2.116:8888/tutorITA/api/api_major/addMajor.php', 
         formDataforRequest,
         {Headers: {'Content-Type': 'multipart/form-data',
         "Access-Control-Allow-Origin": "*"},

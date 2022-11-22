@@ -23,7 +23,7 @@ export default function Home ({data}){
         action: 'select'})
       
       const response =  await axios.post(
-          'http://192.168.100.106:8888/tutorITA/api/api_alumno/selectTutoriasAlumno.php', 
+          'http://172.16.2.116:8888/tutorITA/api/api_alumno/selectTutoriasAlumno.php', 
           formDataforRequest,
           {Headers: {'Content-Type': 'multipart/form-data',
           "Access-Control-Allow-Origin": "*"},

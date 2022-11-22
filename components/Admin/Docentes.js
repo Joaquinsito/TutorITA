@@ -24,7 +24,7 @@ const ItemDocente = (props, {navigation}) => {
         formDataforRequest.append("email", formData.emailU)
         console.log("data for send", formDataforRequest);
         const response = await axios.post(
-            'http://192.168.100.106:8888/tutorITA/api/api_docente/updateDocente.php',
+            'http://172.16.2.116:8888/tutorITA/api/api_docente/updateDocente.php',
                 formDataforRequest,
                 {
                     headers: {

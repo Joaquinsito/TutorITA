@@ -22,7 +22,7 @@ const ItemCarrera = (props, {navigation}) => {
         formDataforRequest.append("name", formData.nameU)
         console.log("data for send", formDataforRequest);
         const response = await axios.post(
-            'http://192.168.100.106:8888/tutorITA/api/api_major/updateMajor.php',
+            'http://172.16.2.116:8888/tutorITA/api/api_major/updateMajor.php',
                 formDataforRequest,
                 {
                     headers: {
@@ -48,7 +48,7 @@ const ItemCarrera = (props, {navigation}) => {
         formDataforRequest.append("action1", 'delete')
 
         const response = await axios.post(
-            'http://192.168.100.106:8888/tutorITA/api/api_major/deleteMajor.php',
+            'http://172.16.2.116:8888/tutorITA/api/api_major/deleteMajor.php',
                 formDataforRequest,
                 {
                     headers: {

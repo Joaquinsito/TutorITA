@@ -91,7 +91,7 @@ const Asesorias = ({ navigation, data }) => {
         console.log('FormDataRequest', formDataforRequest)
 
         const response = await axios.post(
-            'http://192.168.100.106:8888/tutorITA/api/api_tutorias/addTutoria.php',  //Si no encuentra el localhost, poner direccion de la maquina
+            'http://172.16.2.116:8888/tutorITA/api/api_tutorias/addTutoria.php',  //Si no encuentra el localhost, poner direccion de la maquina
             formDataforRequest,
             {
                 Headers: {

@@ -31,7 +31,7 @@ export default function DocentesAdmin ({data, navigation}){
           action: 'select'})
         
         const response =  await axios.post(
-            'http://192.168.100.106:8888/tutorITA/api/api_admin/selectDocentes.php', 
+            'http://172.16.2.116:8888/tutorITA/api/api_admin/selectDocentes.php', 
             formDataforRequest,
             {Headers: {'Content-Type': 'multipart/form-data',
             "Access-Control-Allow-Origin": "*"},
