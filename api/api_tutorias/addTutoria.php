@@ -14,12 +14,10 @@
     $actualdate = date('Y/m/d');
 
     if(strtotime($date) > strtotime($actualdate)){
-        echo ('Paso validacion');
         if($_POST['action'] == 'register'){
             echo ('Paso action');
-            $sql = "Insert into asesorias (idAsesoria, idMateriaAsesoria, statusAsesoria, cupoAsesoria, idDocenteAsesoria, fecha, hora)
-             values ('1','$idMateriaAsesoria', '$statusAsesoria', '$cupoAsesoria', '$idDocenteAsesoria', '$date', '$hora');";
-            echo ($sql);
+            $sql = "Insert into asesorias (idMateriaAsesoria, statusAsesoria, cupoAsesoria, idDocenteAsesoria, fecha, hora)
+             values ('$idMateriaAsesoria', '$statusAsesoria', '$cupoAsesoria', '$idDocenteAsesoria', '$date', '$hora');";
             $result = $conexion->query($sql);
            
             if($result){
