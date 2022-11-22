@@ -223,8 +223,8 @@ const App = () => {
           >
             <Stack.Screen
               name="Login"
-              //component={LoginForm}
-              component={Main}
+              component={LoginForm}
+              //component={Main}
               options={{ headerShown: false }}
             />
             <Stack.Screen
