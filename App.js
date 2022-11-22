@@ -8,7 +8,6 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 //importacion de los componentes
 import Asesorias from './components/alumno/Asesorias';
 import Home from './components/alumno/Home'; 
-import Main from './components/alumno/Main';
 import Profile from './components/alumno/Profile';
 
 import LoginForm from './components/auth/Login';

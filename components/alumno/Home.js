@@ -54,7 +54,7 @@ const renderItem = ({ item }) => (
       style={{
         flex: 1,
         alignItems: 'center',
-        backgroundColor: "yellow",
+        backgroundColor: "white",
       }}>
       <Text>Tutorias!</Text>
       <FlatList
