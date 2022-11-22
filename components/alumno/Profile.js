@@ -174,7 +174,7 @@ export default function Profile ({ data, navigation }) {
                 <Box p="3" rounded="xl" backgroundColor="#ffffff">
                     <Text mt="2" fontSize="25" color="#1b396a" fontWeight="bold" textAlign="center">{"   "}My Profile</Text>
                     <Text fontSize="20" fontWeight="bold" mt="3" >
-                        {"   "}Name:
+                        {"   "}Name :
                         <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> {user.nombreAlumno}</Text>
                     </Text>
                     <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3">
