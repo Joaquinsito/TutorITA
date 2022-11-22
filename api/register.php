@@ -24,7 +24,7 @@
         if($result == 1){
             $sql2 = "Insert into users (idUser, typeUser) values ('$nControl', 1);";
             $result2 = $conexion->query($sql2);
-
+                
                 CloseCon($conexion);
                 echo json_encode(array('idUser'=> $nControl, 'typeUser' => '1'));
             

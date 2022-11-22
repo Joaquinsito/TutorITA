@@ -14,17 +14,21 @@
     $actualdate = date('Y/m/d');
 
     if(strtotime($date) > strtotime($actualdate)){
-        echo ('Paso validacion');
         if($_POST['action'] == 'register'){
-            echo ('Paso action');
+            $sql = "Insert into asesorias (idMateriaAsesoria, statusAsesoria, cupoAsesoria, idDocenteAsesoria, fecha, hora)
+             values ('$idMateriaAsesoria', '$statusAsesoria', '$cupoAsesoria', '$idDocenteAsesoria', '$date', '$hora');";
+
             $sql = "Insert into asesorias (idAsesoria, idMateriaAsesoria, statusAsesoria, cupoAsesoria, idDocenteAsesoria, fecha, hora)
              values ('','$idMateriaAsesoria', '$statusAsesoria', '$cupoAsesoria', '$idDocenteAsesoria', '$date', '$hora');";
-            echo ($sql);
+
             $result = $conexion->query($sql);
            
             if($result){
-                    CloseCon($conexion);
-                    echo json_encode(array('result'=>'ok'));
+                $set = array();
+                $row = array('idUser'=> $idDocenteAsesoria, 'typeUser' => '2');
+                $set[] = $row;
+                CloseCon($conexion);
+                echo json_encode($set);
             }
         }
     }else{
