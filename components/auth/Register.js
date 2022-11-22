@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Center, Heading, Text, VStack, Box, FormControl, Input, Link, Button, HStack, Image, ScrollView } from "native-base";
 import axios from "axios";
 import SelectList from 'react-native-dropdown-select-list';
+import {Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 const Register = ({ navigation }) => {
@@ -113,7 +114,8 @@ const Register = ({ navigation }) => {
         console.log('Object', response.data)
 
         if (Object.keys(response.data).length >= 1) {
-            navigation.navigate('AlumnoMain', { noControl: response.data.idUser })
+            Alert.alert("Update", "Se actualizo el usuario");
+            navigation.navigate("Login");
         } else {
             alert("Hay un problema con tus datos verificalo")
         }
@@ -204,11 +206,17 @@ const Register = ({ navigation }) => {
                             size="lg"
                             backgroundColor="#1b396a"
                             borderRadius={30}
-                            //onPress={onSubmit} 
-                            onPress={() => navigate.navigate("Home")} //comentar despues
+                            onPress={onSubmit} 
                             >  
                             Sign in
                         </Button>
+                        <Link _text={{
+                            color: "indigo.500",
+                            fontWeight: "medium",
+                            fontSize: "sm"
+                        }} onPress={() => { navigation.navigate("Login") }}>
+                            I have an account
+                        </Link>
                     </VStack>
                 </Box>
             </Center>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView, HStack, Avatar, Heading, Box, Image, Center, VStack, Button, Modal, FormControl, Input } from 'native-base';
 import axios from "axios";
 
-export default function Profile ({ data }) {
+export default function Profile ({ data, navigation }) {
     //const imageURI = require('../../assets/TecNM.png');
     const imageURI = require('../../assets/logoanimado2.gif');
     const [isLoading, setLoading] = useState(true);
@@ -205,6 +205,13 @@ export default function Profile ({ data }) {
                             backgroundColor="#1b396a"
                             borderRadius={30}
                             onPress={() => setShowModal(true)}>Edit</Button>
+                    </Box>
+                    <Box Box p="3" rounded="xl">
+                        <Button
+                            size="lg"
+                            backgroundColor="#1b396a"
+                            borderRadius={30}
+                            onPress={() => navigation.navigate("Login")}>Log out</Button>
                     </Box>
                 </View>
             </View>
