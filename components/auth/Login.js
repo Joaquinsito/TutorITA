@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Text, Button, ScrollView, Stack, FormControl, Input, Image, Center, VStack, HStack, Link } from 'native-base';
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
+import { Alert, } from 'react-native';
 
 
 
@@ -77,24 +78,24 @@ const LoginForm = ({ navigation }) => {
                 },
                 transformRequest: formData => formDataforRequest,
             }
-        )
+        ).then((response) => {
+            console.log('Object', response.data)
+            if (Object.keys(response.data).length >= 1) {
+                if (response.data[0].typeUser == 1){
+                    navigation.replace('TabStudent', { data: response.data ,noControl: response.data[0].idUser })
+                } else if (response.data[0].typeUser == 2){
+                    navigation.replace('TabProfessor', { data: response.data ,idDocente: response.data[0].idUser  })
+                }   else if (response.data[0].typeUser == 3){
+                    navigation.replace('TabAdmin', { data: response.data , idAdmin: response.data[0].idUser  })
+                } else {
+                    Alert.alert("Error", "Verifica tus datos");
+                }
+            }
+        })
 
-        console.log('typeof', typeof (response.data))
-        console.log('Object.keys', Object.keys(response.data).length)
-        console.log('Object', response.data)
+        
 
-        if (Object.keys(response.data).length >= 1) {
-            if (response.data[0].typeUser == 1)
-                navigation.replace('TabStudent', { data: response.data ,noControl: response.data[0].idUser })
-            else if (response.data[0].typeUser == 2)
-                navigation.replace('TabProfessor', { data: response.data ,idDocente: response.data[0].idUser  })
-            //console.log("Profesor")
-            else if (response.data[0].typeUser == 3)
-                navigation.replace('TabAdmin', { data: response.data , idAdmin: response.data[0].idUser  })
-            //console.log("Administrador")
-        } else {
-            console.log('retry')
-        }
+        
     }
 
 

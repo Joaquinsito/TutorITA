@@ -58,17 +58,6 @@ function TabStudent({ navigation, route }) {
         {(props) => <Asesorias {...props} data={route.params.data} />}
       </Tab.Screen>
       <Tab.Screen
-        name="Main"
-        options={{
-          tabBarColor: "#041C32",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bookshelf" color={color} size={26} />
-          ),
-        }}
-      >
-        {(props) => <Main {...props} data={route.params.data}/>}
-      </Tab.Screen>
-      <Tab.Screen
         name="Profile"
         options={{
           tabBarColor: "#041C32",

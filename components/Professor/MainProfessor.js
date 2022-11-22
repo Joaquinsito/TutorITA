@@ -3,24 +3,25 @@ import { View, HStack, Avatar, Platform, Box, Text, Button, ScrollView, Stack, F
 import DateTimePicker from '@react-native-community/datetimepicker';
 import SelectList from 'react-native-dropdown-select-list';
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Alert, } from 'react-native';
 import axios from "axios";
 
 
-const Asesorias = ({ route }) => {
+const Asesorias = ({ navigation, data }) => {
     //DatePicker
     const [date, setDate] = useState(new Date());
     const [show, setShow] = useState(false);
     const [text, setText] = useState('');
     const [mode, setMode] = useState('date');
+    const idDocente = data[0].idUser;
+    const doc = [data[0].idUser]
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
-        setShow(Platform.OS == "ios")
         setShow(false)
         setDate(currentDate);
         let tempDate = new Date(currentDate);
-        let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate();
+        let fDate = tempDate.getFullYear() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getDate();
         setText(fDate)
         //console.log(fDate)
     }
@@ -55,10 +56,7 @@ const Asesorias = ({ route }) => {
         { key: 'CALC9', value: 'Calculo Integral' }
     ];
 
-    const professor = [
-        { key: '90912990', value: 'Fernando Reyes' },
-        { key: '18181818', value: 'Prueba' }
-    ];
+
 
     const hour = [
         { key: '07:00', value: '07:00' },
@@ -85,9 +83,9 @@ const Asesorias = ({ route }) => {
         const formDataforRequest = new FormData()
         formDataforRequest.append("idMateriaAsesoria", selected)
         formDataforRequest.append("statusAsesoria", 1)
-        formDataforRequest.append("cupoAsesoria", 8)
-        formDataforRequest.append("idDocente", selected2)
-        formDataforRequest.append("date", "2022/11/23")
+        formDataforRequest.append("cupoAsesoria", formData.cupo)
+        formDataforRequest.append("idDocente", idDocente)
+        formDataforRequest.append("date", text)
         formDataforRequest.append("hora", selected3)
         formDataforRequest.append("action", "register")
         console.log('FormDataRequest', formDataforRequest)
@@ -102,10 +100,14 @@ const Asesorias = ({ route }) => {
                 },
                 transformRequest: formData => formDataforRequest,
             }
-        )
-            console.log('typeof', typeof (response.data))
-            console.log('Object.keys', Object.keys(response.data).length)
-            console.log('Object', response.data)
+        ).then((response) => {
+            console.log(response.data);
+            console.log('idUser ', response.data.idUser)
+            Alert.alert("ADD", "Se agrego asesoria");
+            navigate.replace('TabProfessor', { data: response.data })
+         
+        })
+            
     }
 
 
@@ -121,12 +123,15 @@ const Asesorias = ({ route }) => {
                                 <SelectList setSelected={setSelected} data={subject} placeholder="Select Subject" search={false} />
                             </FormControl>
                             <FormControl isRequired>
-                                <FormControl.Label>Professor</FormControl.Label>
-                                <SelectList setSelected={setSelected2} data={professor} placeholder="Select Professor" search={false} />
-                            </FormControl>
-                            <FormControl isRequired>
                                 <FormControl.Label>Hour</FormControl.Label>
                                 <SelectList setSelected={setSelected3} data={hour} placeholder="Select Hour" search={false} />
+                            </FormControl>
+                            <FormControl isRequired>
+                                <FormControl.Label>Cupo</FormControl.Label>
+                                <Input onChangeText={value => setFormData({
+                                ...formData,
+                                cupo: value
+                            })}/>
                             </FormControl>
                             <FormControl isRequired>
                                 <FormControl.Label>Date</FormControl.Label>
