@@ -64,7 +64,7 @@ export default function ProfileProfessor ({ data, navigation }) {
         formDataforRequest.append("email", formData.emailU)
         console.log("data for send", formDataforRequest);
         const response = await axios.post(
-            'http://192.168.100.106:8888/tutorITA/api/api_docente/updateDocente.php',
+            'http://172.16.2.116:8888/tutorITA/api/api_docente/updateDocente.php',
                 formDataforRequest,
                 {
                     headers: {
@@ -80,7 +80,7 @@ export default function ProfileProfessor ({ data, navigation }) {
             formDataforRequest.append("idDocente", idDocente)
             formDataforRequest.append("action", formData.action)
             const respuesta =   axios.post(
-                    'http://192.168.100.106:8888/tutorITA/api/api_docente/selectDocente.php',
+                    'http://172.16.2.116:8888/tutorITA/api/api_docente/selectDocente.php',
                     formDataforRequest,
                     {
                         headers: {

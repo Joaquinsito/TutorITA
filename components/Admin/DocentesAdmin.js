@@ -74,7 +74,7 @@ const addDocente = async () => {
     console.log("data for request", formDataforRequest);
 
     const answer =  await axios.post(
-        'http://192.168.100.106:8888/tutorITA/api/api_docente/addDocente.php', 
+        'http://172.16.2.116:8888/tutorITA/api/api_docente/addDocente.php', 
         formDataforRequest,
         {Headers: {'Content-Type': 'multipart/form-data',
         "Access-Control-Allow-Origin": "*"},

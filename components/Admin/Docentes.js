@@ -50,7 +50,7 @@ const ItemDocente = (props, {navigation}) => {
         formDataforRequest.append("action", 'delete')
 
         const response = await axios.post(
-            'http://192.168.100.106:8888/tutorITA/api/api_docente/deleteDocente.php',
+            'http://172.16.2.116:8888/tutorITA/api/api_docente/deleteDocente.php',
                 formDataforRequest,
                 {
                     headers: {
